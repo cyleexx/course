@@ -1,0 +1,340 @@
+-- Catapult System Level Synthesis: C Design Checker Formal Rules Report by Rule Status
+
+Current Option Settings
+  Option                          Description                                          Value
+  ------------------------------  --------------------------------------------------   -----
+  WAIVER_FILE                     C Design Checker Waiver file                         
+  MEMORY_LIMIT                    Memory Usage Limit in (GB)                           0
+  SYMBOLIC_MEMSIZE_THRESHOLD      Symbolic Memory Size Threshold                       256
+  VERIFICATION_EFFORT             Verification Effort                                  medium
+  VERIFICATION_MODE               Verification modes of CDesignChecker run             Custom
+  RPT_UNDECIDED_PROPS             Report undecided properties in report files          true
+  GLOBAL_OPTIONS                  Global Options                                       
+  ABR                             ABR - Array Bounds Read                              CHECKED
+  ABW                             ABW - Array Bounds Write                             CHECKED
+  ACC                             ACC - Accumulator of native C type                   CHECKED
+  ACS                             ACS - Accumulator of saturated type                  CHECKED
+  AIC                             AIC - Assignment used Instead of Comparison          CHECKED
+  ALS                             ALS - Ac_int Left Shift check                        CHECKED
+  AOB                             AOB - Arithmetic Operator with Boolean               CHECKED
+  APT                             APT - Array Dimension Power of Two                   CHECKED
+  AWE                             AWE - Assignments Without Effect                     CHECKED
+  CAS                             CAS - Incomplete Switch-Case                         CHECKED
+  CBU                             CBU - Conditional break in Unrolled Loop             CHECKED
+  CCC                             CCC - Static constant comparison                     CHECKED
+  CGR                             CGR - Conditional Guard in Rolled Loop               CHECKED
+  CIA                             CIA - Comparison Instead of Assignment               CHECKED
+  CMC                             CMC - C style Memory Check                           CHECKED
+  CNS                             CNS - Constant condition of if/switch                CHECKED
+  CWB                             CWB - Case Without Break                             CHECKED
+  DBZ                             DBZ - Divide By Zero                                 CHECKED
+  DIU                             DIU - Dynamic Index in Unrolled Loop                 CHECKED
+  FVI                             FVI - For Loop with Variable Iterations              CHECKED
+  FXD                             FXD - Mixed fixed and non-fixed datatypes            CHECKED
+  ISE                             ISE - Illegal Shift Error                            CHECKED
+  LRC                             LRC - Long Reset Cycle                               CHECKED
+  MDB                             MDB - Missing Default Branch                         CHECKED
+  MXS                             MXS - Mixed signed and unsigned datatypes            CHECKED
+  NCO                             NCO - No Contribution to Output                      CHECKED
+  OSA                             OSA - Optimal Size Accumulator                       CHECKED
+  OVL                             OVL - Overflow/Underflow                             CHECKED
+  PDD                             PDD - Platform dependent datatype (long)             CHECKED
+  RIU                             RIU - Rolled loop Inside Unrolled loop               CHECKED
+  RRT                             RRT - Reset referenced in thread                     CHECKED
+  SAT                             SAT - Sub-optimal Adder Tree                         CHECKED
+  STF                             STF - Funcs with statics called multiple times       CHECKED
+  SUD                             SUD - Suboptimal Use of Divide and Modulus Operator  CHECKED
+  UMR                             UMR - Uninitialized Memory Read                      CHECKED
+
+FATAL                                                   Violated     Waived  Undecided
+----------------------------------------------------- ---------- ---------- ----------
+
+ERROR                                                   Violated     Waived  Undecided
+----------------------------------------------------- ---------- ---------- ----------
+ABR - Array Bounds Read                                        2          0          0
+ABW - Array Bounds Write                                       2          0          0
+AOB - Arithmetic Operator with Boolean                         0          0          0
+CAS - Incomplete Switch-Case                                   0          0          0
+DBZ - Divide By Zero                                           0          0          0
+ISE - Illegal Shift Error                                      0          0          0
+OVL - Overflow/Underflow                                       4          0          3
+RRT - Reset referenced in thread                               0          0          0
+UMR - Uninitialized Memory Read                                9          0          0
+
+WARNING                                                 Violated     Waived  Undecided
+----------------------------------------------------- ---------- ---------- ----------
+ACC - Accumulator of native C type                             0          0          0
+ACS - Accumulator of saturated type                            0          0          0
+AIC - Assignment used Instead of Comparison                    0          0          0
+ALS - Ac_int Left Shift check                                  0          0          0
+AWE - Assignments Without Effect                               0          0          0
+CBU - Conditional break in Unrolled Loop                       0          0          0
+CCC - Static constant comparison                               0          0          0
+CGR - Conditional Guard in Rolled Loop                         0          0          0
+CIA - Comparison Instead of Assignment                         0          0          0
+CNS - Constant condition of if/switch                          0          0          0
+CWB - Case Without Break                                       0          0          0
+DIU - Dynamic Index in Unrolled Loop                           0          0          0
+FVI - For Loop with Variable Iterations                        6          0          0
+FXD - Mixed fixed and non-fixed datatypes                      1          0          0
+MDB - Missing Default Branch                                   0          0          0
+NCO - No Contribution to Output                                5          0          0
+OSA - Optimal Size Accumulator                                 0          0          0
+PDD - Platform dependent datatype (long)                       0          0          0
+RIU - Rolled loop Inside Unrolled loop                         0          0          0
+SAT - Sub-optimal Adder Tree                                   0          0          0
+SUD - Suboptimal Use of Divide and Modulus Operator            0          0          0
+
+INFO                                                    Violated     Waived  Undecided
+----------------------------------------------------- ---------- ---------- ----------
+APT - Array Dimension Power of Two                             3          0          0
+CMC - C style Memory Check                                     0          0          0
+LRC - Long Reset Cycle                                         0          0          0
+MXS - Mixed signed and unsigned datatypes                      0          0          0
+STF - Funcs with statics called multiple times                 0          0          0
+
+DISABLED                                              
+----------------------------------------------------- 
+
+Violations - 32 (0 fatal, 17 error, 12 warning, 3 info)
+FATAL                                                       
+ERROR                                                       
+  ABR - Array Bounds Read - 2                               
+    EdgeDetect_VerDer.h:83:26                               
+      | 81             if ( (x&4) == 0 ) {                       
+      | 82               // vertical window of pixels            
+      > 83               rdbuf1_pix = line_buf1[x/8];            
+      | 84               rdbuf0_pix = line_buf0[x/8];            
+      | 85             } else { // Write line buffer caches on odd iterations of COL loop
+                                                            
+    EdgeDetect_VerDer.h:84:26                               
+      | 82               // vertical window of pixels            
+      | 83               rdbuf1_pix = line_buf1[x/8];            
+      > 84               rdbuf0_pix = line_buf0[x/8];            
+      | 85             } else { // Write line buffer caches on odd iterations of COL loop
+      | 86               line_buf1[x/8] = rdbuf0_pix; // copy previous line
+                                                            
+  ABW - Array Bounds Write - 2                              
+    EdgeDetect_VerDer.h:86:13                               
+      | 84               rdbuf0_pix = line_buf0[x/8];            
+      | 85             } else { // Write line buffer caches on odd iterations of COL loop
+      > 86               line_buf1[x/8] = rdbuf0_pix; // copy previous line
+      | 87               line_buf0[x/8] = wrbuf0_pix; // store current line
+      | 88             }                                         
+                                                            
+    EdgeDetect_VerDer.h:87:13                               
+      | 85             } else { // Write line buffer caches on odd iterations of COL loop
+      | 86               line_buf1[x/8] = rdbuf0_pix; // copy previous line
+      > 87               line_buf0[x/8] = wrbuf0_pix; // store current line
+      | 88             }                                         
+      | 89             // Get 8-bit data from read buffer caches, lower 8 on even iterations of COL loop
+                                                            
+  OVL - Overflow/Underflow - 4                              
+    EdgeDetect_VerDer.h:69:38                               
+      | 67         VROW: for (maxHType y = 0; ; y++) { // VROW has one extra iteration to ramp-up window
+      | 68           #pragma hls_pipeline_init_interval 1        
+      > 69           VCOL: for (maxWType x = 0; ; x+=4) {        
+      | 70             if (y <= heightIn-1) {                    
+      | 71               dat = dat_in.read(); // Read streaming interface
+                                                            
+    EdgeDetect_HorDer.h:61:38                               
+      | 59         HROW: for (maxHType y = 0; ; y++) {           
+      | 60           #pragma hls_pipeline_init_interval 1        
+      > 61           HCOL: for (maxWType x = 0; ; x+=4) { // HCOL has one extra iteration to ramp-up window
+      | 62             if (x <= maxWType(widthIn - 4)) {         
+      | 63               pix4 = pix_chan1.read(); // Read streaming interface
+                                                            
+    EdgeDetect_MagAng.h:75:65                               
+      | 73               ac_math::ac_abs(dy.slc<9>(9*i), dy_abs);
+      | 74               uint9 sum_abs = dx_abs + dy_abs;        
+      > 75               ac_fixed<8, 8, false, AC_TRN,AC_SAT> sum_abs_clip = sum_abs; // Fixed type
+      | 76               magType clip_tmp = (magType) sum_abs_clip.to_uint(); // Convert to unsigned int
+      | 77               sum.set_slc<8>(8*i, clip_tmp);          
+                                                            
+    EdgeDetect_MagAng.h:67:38                               
+      | 65         MROW: for (maxHType y = 0; ; y++) {           
+      | 66           #pragma hls_pipeline_init_interval 1        
+      > 67           MCOL: for (maxWType x = 0; ; x+=4) {        
+      | 68             dy = dy_chan.read();                      
+      | 69             dx = dx_chan.read();                      
+                                                            
+  UMR - Uninitialized Memory Read - 9                       
+    EdgeDetect_VerDer.h:76:24                               
+      | 74             // Write data cache, write lower 32 on even iterations of COL loop, upper 32 on odd
+      | 75             if ( (x&4) == 0 ) {                       
+      > 76               wrbuf0_pix.set_slc(0,pix0);             
+      | 77             } else {                                  
+      | 78               wrbuf0_pix.set_slc(32,pix0);            
+                                                            
+    EdgeDetect_VerDer.h:76:34                               
+      | 74             // Write data cache, write lower 32 on even iterations of COL loop, upper 32 on odd
+      | 75             if ( (x&4) == 0 ) {                       
+      > 76               wrbuf0_pix.set_slc(0,pix0);             
+      | 77             } else {                                  
+      | 78               wrbuf0_pix.set_slc(32,pix0);            
+                                                            
+    EdgeDetect_VerDer.h:83:26                               
+      | 81             if ( (x&4) == 0 ) {                       
+      | 82               // vertical window of pixels            
+      > 83               rdbuf1_pix = line_buf1[x/8];            
+      | 84               rdbuf0_pix = line_buf0[x/8];            
+      | 85             } else { // Write line buffer caches on odd iterations of COL loop
+                                                            
+    EdgeDetect_VerDer.h:84:26                               
+      | 82               // vertical window of pixels            
+      | 83               rdbuf1_pix = line_buf1[x/8];            
+      > 84               rdbuf0_pix = line_buf0[x/8];            
+      | 85             } else { // Write line buffer caches on odd iterations of COL loop
+      | 86               line_buf1[x/8] = rdbuf0_pix; // copy previous line
+                                                            
+    EdgeDetect_VerDer.h:105:17                              
+      | 103            for (int8 i = 0; i <= 3; i++) {           
+      | 104              pix_tmp = pix2.slc<8>(8*i)*kernel[0] + pix1.slc<8>(8*i)*kernel[1] + pix0.slc<8>(8*i)*kernel[2];
+      > 105              pix.set_slc(9*i, pix_tmp);              
+      | 106            }                                         
+      | 107                                                      
+                                                            
+    EdgeDetect_HorDer.h:81:21                               
+      | 79               grad = 0;                               
+      | 80             } else {                                  
+      > 81               grad  = pix_buf0*kernel[0] + pix_buf1*kernel[1] + pix4.slc<8>(0)*kernel[2];
+      | 82             }                                         
+      | 83                                                       
+                                                            
+    EdgeDetect_HorDer.h:86:19                               
+      | 84                                                       
+      | 85             if(x != 0) {                              
+      > 86               grad4.set_slc<9>(0, grad_buf0);         
+      | 87               grad4.set_slc<9>(9, grad_buf1);         
+      | 88               grad4.set_slc<9>(18, grad_buf2);        
+                                                            
+    EdgeDetect_MagAng.h:77:17                               
+      | 75               ac_fixed<8, 8, false, AC_TRN,AC_SAT> sum_abs_clip = sum_abs; // Fixed type
+      | 76               magType clip_tmp = (magType) sum_abs_clip.to_uint(); // Convert to unsigned int
+      > 77               sum.set_slc<8>(8*i, clip_tmp);          
+      | 78             }                                         
+      | 79             // Catapult's math library piecewise linear implementation of sqrt and atan2
+                                                            
+    EdgeDetect_MagAng.h:125:11                              
+      | 123          #pragma hls_unroll yes                      
+      | 124          for(int i=0; i<31; i++)                     
+      > 125            mask[i] = tmp_bit & CRC_POLY[i];          
+      | 126                                                      
+      | 127          uint31 crc_tmp_h31 = crc_tmp.slc<31>(1);    
+                                                            
+WARNING                                                     
+  FVI - For Loop with Variable Iterations - 6               
+    EdgeDetect_VerDer.h:69:15                               
+      | 67         VROW: for (maxHType y = 0; ; y++) { // VROW has one extra iteration to ramp-up window
+      | 68           #pragma hls_pipeline_init_interval 1        
+      > 69           VCOL: for (maxWType x = 0; ; x+=4) {        
+      | 70             if (y <= heightIn-1) {                    
+      | 71               dat = dat_in.read(); // Read streaming interface
+                                                            
+    EdgeDetect_VerDer.h:67:13                               
+      | 65         // Remove loop upperbounds for RTL code coverage
+      | 66         // Use bit accurate data types on loop iterator
+      > 67         VROW: for (maxHType y = 0; ; y++) { // VROW has one extra iteration to ramp-up window
+      | 68           #pragma hls_pipeline_init_interval 1        
+      | 69           VCOL: for (maxWType x = 0; ; x+=4) {        
+                                                            
+    EdgeDetect_HorDer.h:61:15                               
+      | 59         HROW: for (maxHType y = 0; ; y++) {           
+      | 60           #pragma hls_pipeline_init_interval 1        
+      > 61           HCOL: for (maxWType x = 0; ; x+=4) { // HCOL has one extra iteration to ramp-up window
+      | 62             if (x <= maxWType(widthIn - 4)) {         
+      | 63               pix4 = pix_chan1.read(); // Read streaming interface
+                                                            
+    EdgeDetect_HorDer.h:59:13                               
+      | 57         pixelType pix_buf0, pix_buf1;                 
+      | 58                                                       
+      > 59         HROW: for (maxHType y = 0; ; y++) {           
+      | 60           #pragma hls_pipeline_init_interval 1        
+      | 61           HCOL: for (maxWType x = 0; ; x+=4) { // HCOL has one extra iteration to ramp-up window
+                                                            
+    EdgeDetect_MagAng.h:67:15                               
+      | 65         MROW: for (maxHType y = 0; ; y++) {           
+      | 66           #pragma hls_pipeline_init_interval 1        
+      > 67           MCOL: for (maxWType x = 0; ; x+=4) {        
+      | 68             dy = dy_chan.read();                      
+      | 69             dx = dx_chan.read();                      
+                                                            
+    EdgeDetect_MagAng.h:65:13                               
+      | 63         uint32 crc32_dat_out_tmp = 0XFFFFFFFF;        
+      | 64                                                       
+      > 65         MROW: for (maxHType y = 0; ; y++) {           
+      | 66           #pragma hls_pipeline_init_interval 1        
+      | 67           MCOL: for (maxWType x = 0; ; x+=4) {        
+                                                            
+  FXD - Mixed fixed and non-fixed datatypes - 1             
+    EdgeDetect_MagAng.h:75:65                               
+      | 73               ac_math::ac_abs(dy.slc<9>(9*i), dy_abs);
+      | 74               uint9 sum_abs = dx_abs + dy_abs;        
+      > 75               ac_fixed<8, 8, false, AC_TRN,AC_SAT> sum_abs_clip = sum_abs; // Fixed type
+      | 76               magType clip_tmp = (magType) sum_abs_clip.to_uint(); // Convert to unsigned int
+      | 77               sum.set_slc<8>(8*i, clip_tmp);          
+                                                            
+  NCO - No Contribution to Output - 5                       
+    EdgeDetect_VerDer.h:87:13                               
+      | 85             } else { // Write line buffer caches on odd iterations of COL loop
+      | 86               line_buf1[x/8] = rdbuf0_pix; // copy previous line
+      > 87               line_buf0[x/8] = wrbuf0_pix; // store current line
+      | 88             }                                         
+      | 89             // Get 8-bit data from read buffer caches, lower 8 on even iterations of COL loop
+                                                            
+    EdgeDetect_VerDer.h:86:13                               
+      | 84               rdbuf0_pix = line_buf0[x/8];            
+      | 85             } else { // Write line buffer caches on odd iterations of COL loop
+      > 86               line_buf1[x/8] = rdbuf0_pix; // copy previous line
+      | 87               line_buf0[x/8] = wrbuf0_pix; // store current line
+      | 88             }                                         
+                                                            
+    EdgeDetect_HorDer.h:101:11                              
+      | 99             pix_buf1  = pix4.slc<8>(24);              
+      | 100                                                      
+      > 101            pix4_buf = pix4;                          
+      | 102                                                      
+      | 103            // programmable width exit condition      
+                                                            
+    EdgeDetect_MagAng.h:69:11                               
+      | 67           MCOL: for (maxWType x = 0; ; x+=4) {        
+      | 68             dy = dy_chan.read();                      
+      > 69             dx = dx_chan.read();                      
+      | 70             #pragma unroll yes                        
+      | 71             for (int i = 0; i <= 3; i++){             
+                                                            
+    EdgeDetect_MagAng.h:68:11                               
+      | 66           #pragma hls_pipeline_init_interval 1        
+      | 67           MCOL: for (maxWType x = 0; ; x+=4) {        
+      > 68             dy = dy_chan.read();                      
+      | 69             dx = dx_chan.read();                      
+      | 70             #pragma unroll yes                        
+                                                            
+INFO                                                        
+  APT - Array Dimension Power of Two - 3                    
+    EdgeDetect_defs.h:47:13                                 
+      | 45     const int maxImageHeight = 480;                   
+      | 46                                                       
+      > 47     const int kernel[3] = {1, 0, -1};                 
+      | 48                                                       
+      | 49     // Define some bit-accurate types to use in this model
+                                                            
+    EdgeDetect_VerDer.h:55:19                               
+      | 53       {                                               
+      | 54         // Line buffers store pixel line history - Mapped to RAM
+      > 55         pixelType8x line_buf0[maxImageWidth/8];       
+      | 56         pixelType8x line_buf1[maxImageWidth/8];       
+      | 57         pixelType8x rdbuf0_pix, rdbuf1_pix;           
+                                                            
+    EdgeDetect_VerDer.h:56:19                               
+      | 54         // Line buffers store pixel line history - Mapped to RAM
+      | 55         pixelType8x line_buf0[maxImageWidth/8];       
+      > 56         pixelType8x line_buf1[maxImageWidth/8];       
+      | 57         pixelType8x rdbuf0_pix, rdbuf1_pix;           
+      | 58         pixelType8x wrbuf0_pix, wrbuf1_pix;           
+                                                            
+                                                            
+Waived - 0 (0 fatal, 0 error, 0 warning, 0 info)
+                                                            
+
+End of Report

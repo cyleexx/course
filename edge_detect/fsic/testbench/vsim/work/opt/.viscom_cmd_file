@@ -1,0 +1,1 @@
+/usr/mentor/Questa_Sim/cur/questasim/bin/../linux/VisualizerRls/bin/viscom -nolock -quiet -jmem_size 1572864 tb_fsic -o opt +acc -debug +designfile +__betafsm

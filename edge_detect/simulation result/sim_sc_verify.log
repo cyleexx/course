@@ -1,0 +1,32 @@
+Loading Input File
+Input file:          ./image/people640x360_rgb.bmp
+Mode:                0
+Output file (alg):   out_algorithm.bmp
+Output file (hw):    out_hw.bmp
+Image width: 640
+Image height: 360
+############################################# FRAME NO.   0 ###############################################
+Running
+Magnitude: Manhattan norm per pixel 0.000000
+Writing algorithmic bitmap output to: out_algorithm.bmp
+Writing bit-accurate bitmap output to: out_hw.bmp
+sofErr: 0 eolErr: 0
+crc32_alg_pix_in  = ebb44e76  crc32_hw_pix_in  = ebb44e76
+crc32_alg_dat_out = ebb44e76  crc32_hw_dat_out = ebb44e76
+Finished
+Loading Input File
+Input file:          ./image/people640x360_rgb.bmp
+Mode:                1
+Output file (alg):   out_algorithm.bmp
+Output file (hw):    out_hw.bmp
+Image width: 640
+Image height: 360
+############################################# FRAME NO.   0 ###############################################
+Running
+Magnitude: Manhattan norm per pixel 0.000000
+Writing algorithmic bitmap output to: out_algorithm.bmp
+Writing bit-accurate bitmap output to: out_hw.bmp
+sofErr: 0 eolErr: 0
+crc32_alg_pix_in  = ebb44e76  crc32_hw_pix_in  = ebb44e76
+crc32_alg_dat_out = 49e564fe  crc32_hw_dat_out = 49e564fe
+Finished
